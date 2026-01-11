@@ -310,18 +310,12 @@ const childrenEntries = useMemo(() => {
       >
         {/* Preview placeholder */}
         <div
-          style={{
-            width: 320,
-            height: 460,
-            border: "2px dashed #bbb",
-            borderRadius: 16,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "#777",
-            background: "#fafafa",
-            textAlign: "center",
-            padding: 12,
+          style={{<div style={{ fontSize: 12, color: "#666" }}>
+  PREVIEW TEST ✅<br />
+  Height: {height}<br />
+  Build: {build}<br />
+  Accent: {outfit.palette?.[2]}
+</div>
           }}
         >
           Character Preview (SVG later)
