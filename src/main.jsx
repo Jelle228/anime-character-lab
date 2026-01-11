@@ -329,66 +329,99 @@ const childrenEntries = useMemo(() => {
           <span style={{ fontSize: 12 }}>
             Anchor accessory: <b>{outfit.accessory}</b>
           </span>
-        </div>
+        <<div
+  style={{
+    width: 320,
+    height: 460,
+    border: "2px dashed #bbb",
+    borderRadius: 16,
+    background: "#fafafa",
+    padding: 14,
+    display: "grid",
+    gridTemplateRows: "1fr auto",
+    gap: 10,
+  }}
+>
+  {/* Silhouette area */}
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      borderRadius: 14,
+      background: "white",
+      border: "1px solid #eee",
+    }}
+  >
+    <div
+      style={{
+        width:
+          build === "broad"
+            ? 150
+            : build === "curvy"
+            ? 140
+            : build === "muscular"
+            ? 145
+            : build === "slim"
+            ? 125
+            : 135,
+        height: height === "tall" ? 320 : height === "short" ? 260 : 290,
+        borderRadius: 999,
+        background: "#1b1b1b",
+        position: "relative",
+        boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
+      }}
+    >
+      {/* neutral torso hint */}
+      {showChest ? (
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: 95,
+            transform: "translateX(-50%)",
+            width: chest === "full" ? 110 : chest === "flat" ? 85 : 98,
+            height: 44,
+            borderRadius: 999,
+            background: "#2a2a2a",
+            opacity: 0.9,
+          }}
+        />
+      ) : null}
 
-        <div style={{ display: "grid", gap: 12 }}>
-          {/* Settings */}
-          <div style={{ border: "1px solid #e5e5e5", borderRadius: 16, padding: 16, background: "white" }}>
-            <h2 style={{ marginTop: 0 }}>Character Settings</h2>
+      {/* accent belt from palette */}
+      <div
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: 165,
+          transform: "translateX(-50%)",
+          width: "70%",
+          height: 10,
+          borderRadius: 999,
+          background:
+            outfit.palette?.[2] === "red"
+              ? "#ff3b5c"
+              : outfit.palette?.[2] === "violet"
+              ? "#a26bff"
+              : outfit.palette?.[2] === "cyan"
+              ? "#3bd6ff"
+              : "#2fe6c8",
+          opacity: 0.9,
+        }}
+      />
+    </div>
+  </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 12 }}>
-              <label style={{ display: "grid", gap: 6 }}>
-                Age: {age}
-                <input type="range" min="12" max="30" value={age} onChange={(e) => setAge(parseInt(e.target.value, 10))} />
-                <div style={{ fontSize: 12, color: "#666" }}>
-                  Chest size appears only for female + age ≥ 18.
-                </div>
-              </label>
+  {/* Info */}
+  <div style={{ fontSize: 12, color: "#666", lineHeight: 1.4 }}>
+    <div><b>Visual preview:</b> silhouette placeholder</div>
+    <div><b>Anchor:</b> {outfit.accessory}</div>
+    <div><b>Palette:</b> {outfit.palette.join(", ")}</div>
+    <div><b>Modifiers:</b> {outfit.modifiers.length ? outfit.modifiers.join(", ") : "—"}</div>
+  </div>
+</div>
 
-              <label style={{ display: "grid", gap: 6 }}>
-                Gender presentation
-                <select value={gender} onChange={(e) => setGender(e.target.value)}>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="androgynous">Androgynous / Non-binary</option>
-                </select>
-              </label>
-
-              <label style={{ display: "grid", gap: 6 }}>
-                Height
-                <select value={height} onChange={(e) => setHeight(e.target.value)}>
-                  <option value="short">Short</option>
-                  <option value="average">Average</option>
-                  <option value="tall">Tall</option>
-                </select>
-              </label>
-
-              <label style={{ display: "grid", gap: 6 }}>
-                Build
-                <select value={build} onChange={(e) => setBuild(e.target.value)}>
-                  <option value="slim">Slim</option>
-                  <option value="athletic">Athletic</option>
-                  <option value="muscular">Muscular</option>
-                  <option value="curvy">Curvy</option>
-                  <option value="broad">Broad</option>
-                </select>
-              </label>
-
-              {showChest ? (
-                <label style={{ display: "grid", gap: 6 }}>
-                  Chest size (adult feminine body)
-                  <select value={chest} onChange={(e) => setChest(e.target.value)}>
-                    <option value="flat">Flat</option>
-                    <option value="average">Average</option>
-                    <option value="full">Full</option>
-                  </select>
-                </label>
-              ) : (
-                <div style={{ fontSize: 12, color: "#777", paddingTop: 26 }}>
-                  Chest size hidden (requires female + age ≥ 18)
-                </div>
-              )}
-            </div>
 
             <hr style={{ margin: "16px 0", border: "none", borderTop: "1px solid #eee" }} />
 
