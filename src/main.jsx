@@ -308,15 +308,9 @@ const childrenEntries = useMemo(() => {
           alignItems: "start",
         }}
       >
-  {/* Preview placeholder */}
-  <div
+ <div
   style={{
-    width: 320,
-    height: 460,
-    border: "2px dashed #bbb",
-    borderRadius: 16,
-    background: "#fafafa",
-    padding: 14,
+    height: "100%",
     display: "grid",
     gridTemplateRows: "1fr auto",
     gap: 10,
@@ -332,7 +326,47 @@ const childrenEntries = useMemo(() => {
       justifyContent: "center",
     }}
   >
-    PREVIEW (stable)
+    <div
+      style={{
+        width: build === "slim" ? 120 : build === "broad" ? 155 : build === "muscular" ? 145 : build === "curvy" ? 140 : 135,
+        height: height === "tall" ? 320 : height === "short" ? 260 : 290,
+        borderRadius: 999,
+        background: "#1b1b1b",
+        position: "relative",
+      }}
+    >
+      {/* accent belt */}
+      <div
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: 165,
+          transform: "translateX(-50%)",
+          width: "70%",
+          height: 10,
+          borderRadius: 999,
+          background:
+            outfit.palette?.[2] === "red"
+              ? "#ff3b5c"
+              : outfit.palette?.[2] === "violet"
+              ? "#a26bff"
+              : outfit.palette?.[2] === "cyan"
+              ? "#3bd6ff"
+              : "#2fe6c8",
+          opacity: 0.9,
+        }}
+      />
+    </div>
+  </div>
+
+  <div style={{ fontSize: 12, color: "#666", lineHeight: 1.4 }}>
+    <div><b>Visual preview:</b> silhouette placeholder</div>
+    <div><b>Anchor:</b> {outfit.accessory}</div>
+    <div><b>Palette:</b> {outfit.palette.join(", ")}</div>
+    <div><b>Modifiers:</b> {outfit.modifiers?.length ? outfit.modifiers.join(", ") : "—"}</div>
+  </div>
+</div>
+
   </div>
 
   <div style={{ fontSize: 12, color: "#666", lineHeight: 1.4 }}>
