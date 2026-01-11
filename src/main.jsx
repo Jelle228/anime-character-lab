@@ -308,7 +308,7 @@ const childrenEntries = useMemo(() => {
           alignItems: "start",
         }}
       >
-        {/* Preview placeholder */}
+{/* Preview placeholder */}
 <div
   style={{
     width: 320,
@@ -320,7 +320,7 @@ const childrenEntries = useMemo(() => {
     justifyContent: "center",
     background: "#fafafa",
     padding: 12,
-    textAlign: "center"
+    textAlign: "center",
   }}
 >
   <div style={{ fontSize: 12, color: "#666", lineHeight: 1.6 }}>
@@ -344,10 +344,11 @@ const childrenEntries = useMemo(() => {
 
         >
           Character Preview (SVG later)
-          <br />
-          <span style={{ fontSize: 12 }}>
-            Anchor accessory: <b>{outfit.accessory}</b>
-          </span>
+      
+         <div style={{ fontSize: 12, marginBottom: 8 }}>
+           Anchor accessory: <b>{outfit.accessory}</b>
+        </div>
+
         <<div
   style={{
     width: 320,
@@ -372,6 +373,9 @@ const childrenEntries = useMemo(() => {
       border: "1px solid #eee",
     }}
   >
+    Character Preview (SVG later)
+  </div>
+</div>
     <div
       style={{
         width:
