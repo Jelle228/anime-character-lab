@@ -308,7 +308,7 @@ const childrenEntries = useMemo(() => {
           alignItems: "start",
         }}
       >
-        {/* Preview placeholder */}
+{/* Preview placeholder */}
 <div
   style={{
     width: 320,
@@ -342,6 +342,7 @@ const childrenEntries = useMemo(() => {
     <div><b>Anchor:</b> {outfit.accessory}</div>
   </div>
 </div>
+
 
       {/* neutral torso hint */}
       {showChest ? (
