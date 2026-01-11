@@ -308,8 +308,8 @@ const childrenEntries = useMemo(() => {
           alignItems: "start",
         }}
       >
-{/* Preview placeholder */}
-<div
+  {/* Preview placeholder */}
+  <div
   style={{
     width: 320,
     height: 460,
@@ -319,7 +319,7 @@ const childrenEntries = useMemo(() => {
     padding: 14,
     display: "grid",
     gridTemplateRows: "1fr auto",
-    gap: 10
+    gap: 10,
   }}
 >
   <div
@@ -329,69 +329,21 @@ const childrenEntries = useMemo(() => {
       borderRadius: 14,
       display: "flex",
       alignItems: "center",
-      justifyContent: "center"
+      justifyContent: "center",
     }}
   >
-    PREVIEW (clean)
+    PREVIEW (stable)
   </div>
 
-  <div style={{ fontSize: 12, color: "#666", lineHeight: 1.5 }}>
+  <div style={{ fontSize: 12, color: "#666", lineHeight: 1.4 }}>
     <div><b>Height:</b> {height}</div>
     <div><b>Build:</b> {build}</div>
     <div><b>Accent:</b> {outfit.palette?.[2]}</div>
     <div><b>Anchor:</b> {outfit.accessory}</div>
+    <div><b>Modifiers:</b> {outfit.modifiers?.length ? outfit.modifiers.join(", ") : "—"}</div>
   </div>
 </div>
-
-
-      {/* neutral torso hint */}
-      {showChest ? (
-       <div
-       style={{
-       position: "absolute",
-       left: "50%",
-       top: 165,
-       transform: "translateX(-50%)",
-       width: "70%",
-       height: 10,
-       borderRadius: 999,
-       background:
-        outfit.palette?.[2] === "red"
-          ? "#ff3b5c"
-          : outfit.palette?.[2] === "violet"
-          ? "#a26bff"
-          : outfit.palette?.[2] === "cyan"
-          ? "#3bd6ff"
-          : "#2fe6c8",
-       opacity: 0.9,
-     }}
-   />
- ) : null}
-
-
-      {/* accent belt from palette */}
-      <div
-        style={{
-          position: "absolute",
-          left: "50%",
-          top: 165,
-          transform: "translateX(-50%)",
-          width: "70%",
-          height: 10,
-          borderRadius: 999,
-          background:
-            outfit.palette?.[2] === "red"
-              ? "#ff3b5c"
-              : outfit.palette?.[2] === "violet"
-              ? "#a26bff"
-              : outfit.palette?.[2] === "cyan"
-              ? "#3bd6ff"
-              : "#2fe6c8",
-          opacity: 0.9,
-        }}
-      />
-  </div>
-  </div>
+  <div style={{ display: "grid", gap: 12 }}>
 
   {/* Info */}
   <div style={{ fontSize: 12, color: "#666", lineHeight: 1.4 }}>
