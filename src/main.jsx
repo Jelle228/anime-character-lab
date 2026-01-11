@@ -448,8 +448,9 @@ const childrenEntries = useMemo(() => {
                   <option value="">— choose —</option>
                   {library.map((x) => (
                    <option key={x.id} value={x.id}>
-                    {x.core.name} • v{(x.version ?? 1)} • {(x.arcStage ?? "mid")} • {new Date(x.createdAt).toLocaleString()}
-                   </option>
+  {x.core.name} • v{(x.version ?? 1)} • {(x.arcStage ?? "mid")} • {new Date(x.createdAt).toLocaleString()}
+</option>
+
 
                   ))}
                 </select>
@@ -458,16 +459,14 @@ const childrenEntries = useMemo(() => {
 
             <div style={{ marginTop: 10, fontSize: 12, color: "#666" }}>
               Tip: Save a base character, then pick an arc stage and click <b>Evolve</b> to generate version 2, 3, …
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div style={{ marginTop: 14, color: "#666", fontSize: 12 }}>
-        Next: show a simple version tree list (parent + children) and then replace the preview with SVG layers.
       </div>
     </div>
-  );
+
+    <div style={{ marginTop: 14, color: "#666", fontSize: 12 }}>
+      Next: show a simple version tree list (parent + children) and then replace the preview with SVG layers.
+    </div>
+  </div>
+);
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(
