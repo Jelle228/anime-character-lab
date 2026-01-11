@@ -349,7 +349,7 @@ const childrenEntries = useMemo(() => {
            Anchor accessory: <b>{outfit.accessory}</b>
         </div>
 
-        <<div
+        <div
   style={{
     width: 320,
     height: 460,
