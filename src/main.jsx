@@ -309,19 +309,29 @@ const childrenEntries = useMemo(() => {
         }}
       >
         {/* Preview placeholder */}
-        <div
-        style={{
-        width: 320,
-        height: 460,
-        border: "2px dashed #bbb",
-        borderRadius: 16,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "#fafafa",
-        padding: 12,
-        textAlign: "center"
+<div
+  style={{
+    width: 320,
+    height: 460,
+    border: "2px dashed #bbb",
+    borderRadius: 16,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    background: "#fafafa",
+    padding: 12,
+    textAlign: "center"
   }}
+>
+  <div style={{ fontSize: 12, color: "#666", lineHeight: 1.6 }}>
+    PREVIEW TEST ✅<br />
+    Height: {height}<br />
+    Build: {build}<br />
+    Accent: {outfit.palette?.[2]}<br />
+    Anchor: {outfit.accessory}
+  </div>
+</div>
+
 >
   <div style={{ fontSize: 12, color: "#666" }}>
     PREVIEW TEST ✅<br />
