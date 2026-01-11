@@ -346,20 +346,28 @@ const childrenEntries = useMemo(() => {
 
       {/* neutral torso hint */}
       {showChest ? (
-        <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: 95,
-            transform: "translateX(-50%)",
-            width: chest === "full" ? 110 : chest === "flat" ? 85 : 98,
-            height: 44,
-            borderRadius: 999,
-            background: "#2a2a2a",
-            opacity: 0.9,
-          }}
-        />
-      ) : null}
+       <div
+       style={{
+       position: "absolute",
+       left: "50%",
+       top: 165,
+       transform: "translateX(-50%)",
+       width: "70%",
+       height: 10,
+       borderRadius: 999,
+       background:
+        outfit.palette?.[2] === "red"
+          ? "#ff3b5c"
+          : outfit.palette?.[2] === "violet"
+          ? "#a26bff"
+          : outfit.palette?.[2] === "cyan"
+          ? "#3bd6ff"
+          : "#2fe6c8",
+       opacity: 0.9,
+     }}
+   />
+ ) : null}
+
 
       {/* accent belt from palette */}
       <div
@@ -382,7 +390,7 @@ const childrenEntries = useMemo(() => {
           opacity: 0.9,
         }}
       />
-    </div>
+  </div>
   </div>
 
   {/* Info */}
@@ -392,7 +400,7 @@ const childrenEntries = useMemo(() => {
     <div><b>Palette:</b> {outfit.palette.join(", ")}</div>
     <div><b>Modifiers:</b> {outfit.modifiers.length ? outfit.modifiers.join(", ") : "—"}</div>
   </div>
-</div>
+  </div>
 
 
             <hr style={{ margin: "16px 0", border: "none", borderTop: "1px solid #eee" }} />
