@@ -244,33 +244,22 @@ function App() {
 
   // Show quick version chain info for selected
   const childrenCount = useMemo(() => {
-    const parentEntry = useMemo(() => {
-    if (!currentMeta.parentId) return null;
-    return library.find((x) => x.id === currentMeta.parentId) || null;
-  }, [library, currentMeta.parentId]);
+  if (!currentMeta.id) return 0;
+  return library.filter((x) => x.parentId === currentMeta.id).length;
+}, [library, currentMeta.id]);
 
-  const childrenEntries = useMemo(() => {
-    if (!currentMeta.id) return [];
-    return library
-      .filter((x) => x.parentId === currentMeta.id)
-      .sort((a, b) => (b.version || 1) - (a.version || 1));
-  }, [library, currentMeta.id]);
+const parentEntry = useMemo(() => {
+  if (!currentMeta.parentId) return null;
+  return library.find((x) => x.id === currentMeta.parentId) || null;
+}, [library, currentMeta.parentId]);
 
-  const parentEntry = useMemo(() => {
-    if (!currentMeta.parentId) return null;
-    return library.find((x) => x.id === currentMeta.parentId) || null;
-  }, [library, currentMeta.parentId]);
+const childrenEntries = useMemo(() => {
+  if (!currentMeta.id) return [];
+  return library
+    .filter((x) => x.parentId === currentMeta.id)
+    .sort((a, b) => (b.version || 1) - (a.version || 1));
+}, [library, currentMeta.id]);
 
-  const childrenEntries = useMemo(() => {
-    if (!currentMeta.id) return [];
-    return library
-      .filter((x) => x.parentId === currentMeta.id)
-      .sort((a, b) => (b.version || 1) - (a.version || 1));
-  }, [library, currentMeta.id]);
-
-    if (!currentMeta.id) return 0;
-    return library.filter((x) => x.parentId === currentMeta.id).length;
-  }, [library, currentMeta.id]);
 
   return (
     <div
