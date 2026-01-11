@@ -447,9 +447,10 @@ const childrenEntries = useMemo(() => {
                 <select value={selectedId} onChange={(e) => loadSelected(e.target.value)}>
                   <option value="">— choose —</option>
                   {library.map((x) => (
-                    <option key={x.id} value={x.id}>
-                      {x.core.name} • v{x.version || 1} • {x.arcStage || "mid"} • {new Date(x.createdAt).toLocaleString()}
-                    </option>
+                   <option key={x.id} value={x.id}>
+                    {x.core.name} • v{(x.version ?? 1)} • {(x.arcStage ?? "mid")} • {new Date(x.createdAt).toLocaleString()}
+                   </option>
+
                   ))}
                 </select>
               </label>
