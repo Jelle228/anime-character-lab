@@ -35,17 +35,16 @@ function generateCore() {
     vibe: pick(vibes),
     archetype: pick(archetypes),
     alignment: pick(alignments),
-    powerLevel: pick([3, 4, 5, 6, 7, 8])
+    powerLevel: pick([3, 4, 5, 6, 7, 8]),
   };
 }
 
 function defaultOutfit() {
-  // Minimal Urban Anomaly starter (we expand later)
   const palettes = [
     ["black", "gray", "teal"],
     ["black", "off-white", "cyan"],
     ["black", "gray", "violet"],
-    ["black", "gray", "red"]
+    ["black", "gray", "red"],
   ];
   const tops = ["Oversized hoodie", "Mock-neck sweater", "Longline tee"];
   const bottoms = ["Slim tech pants", "Minimal cargo pants", "Wide urban pants"];
@@ -59,16 +58,16 @@ function defaultOutfit() {
     bottom: pick(bottoms),
     outer: pick(outers),
     accessory: pick(accessories),
-    modifiers: [] // later: glowSeams, sigils, etc.
+    modifiers: [],
   };
 }
 
 function App() {
   // Body settings
   const [age, setAge] = useState(19);
-  const [gender, setGender] = useState("male"); // male | female | androgynous
-  const [height, setHeight] = useState("average"); // short | average | tall
-  const [build, setBuild] = useState("athletic"); // slim | athletic | muscular | curvy | broad
+  const [gender, setGender] = useState("female"); // male | female | androgynous
+  const [height, setHeight] = useState("average");
+  const [build, setBuild] = useState("athletic");
   const [chest, setChest] = useState("average"); // only if female + age>=18
 
   const showChest = useMemo(() => gender === "female" && age >= 18, [gender, age]);
@@ -98,9 +97,9 @@ function App() {
       createdAt: new Date().toISOString(),
       core,
       body: { age, gender, height, build, chest: showChest ? chest : "" },
-      outfit
+      outfit,
     };
-    const next = [entry, ...library].slice(0, 100);
+    const next = [entry, ...library].slice(0, 200);
     setLibrary(next);
     saveLibrary(next);
     setSelectedId(entry.id);
@@ -139,7 +138,7 @@ function App() {
         padding: 24,
         fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial",
         maxWidth: 1100,
-        margin: "0 auto"
+        margin: "0 auto",
       }}
     >
       <h1 style={{ marginBottom: 6 }}>Anime Character Lab</h1>
@@ -161,7 +160,7 @@ function App() {
           display: "grid",
           gridTemplateColumns: "320px 1fr",
           gap: 18,
-          alignItems: "start"
+          alignItems: "start",
         }}
       >
         {/* Preview placeholder */}
@@ -175,15 +174,14 @@ function App() {
             alignItems: "center",
             justifyContent: "center",
             color: "#777",
-            background: "#fafafa"
+            background: "#fafafa",
           }}
         >
           Character Preview (SVG later)
         </div>
 
-        {/* Right column */}
         <div style={{ display: "grid", gap: 12 }}>
-          {/* Character Settings */}
+          {/* Settings */}
           <div style={{ border: "1px solid #e5e5e5", borderRadius: 16, padding: 16, background: "white" }}>
             <h2 style={{ marginTop: 0 }}>Character Settings</h2>
 
@@ -240,9 +238,21 @@ function App() {
                 </div>
               )}
             </div>
+
+            <hr style={{ margin: "16px 0", border: "none", borderTop: "1px solid #eee" }} />
+
+            {/* ✅ This is the block you were looking for */}
+            <h3 style={{ margin: "0 0 8px" }}>Current profile (text)</h3>
+            <div style={{ lineHeight: 1.55 }}>
+              <div><b>Age:</b> {age}</div>
+              <div><b>Gender:</b> {gender}</div>
+              <div><b>Height:</b> {height}</div>
+              <div><b>Build:</b> {build}</div>
+              <div><b>Chest:</b> {showChest ? chest : "—"}</div>
+            </div>
           </div>
 
-          {/* Generated Profile */}
+          {/* Current Character */}
           <div style={{ border: "1px solid #e5e5e5", borderRadius: 16, padding: 16, background: "white" }}>
             <h2 style={{ marginTop: 0 }}>Current Character</h2>
             <div style={{ lineHeight: 1.55 }}>
@@ -276,7 +286,7 @@ function App() {
                   <option value="">— choose —</option>
                   {library.map((x) => (
                     <option key={x.id} value={x.id}>
-                      {x.core.name} • v{1} • {new Date(x.createdAt).toLocaleString()}
+                      {x.core.name} • {new Date(x.createdAt).toLocaleString()}
                     </option>
                   ))}
                 </select>
@@ -287,7 +297,7 @@ function App() {
       </div>
 
       <div style={{ marginTop: 14, color: "#666", fontSize: 12 }}>
-        Next: replace preview placeholder with SVG layers (body/hair/clothes) + add “Evolve” versions.
+        Next: add Evolve (versioning) + SVG layered preview.
       </div>
     </div>
   );
