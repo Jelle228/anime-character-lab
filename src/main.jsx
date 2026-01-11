@@ -244,6 +244,18 @@ function App() {
 
   // Show quick version chain info for selected
   const childrenCount = useMemo(() => {
+  const parentEntry = useMemo(() => {
+    if (!currentMeta.parentId) return null;
+    return library.find((x) => x.id === currentMeta.parentId) || null;
+  }, [library, currentMeta.parentId]);
+
+  const childrenEntries = useMemo(() => {
+    if (!currentMeta.id) return [];
+    return library
+      .filter((x) => x.parentId === currentMeta.id)
+      .sort((a, b) => (b.version || 1) - (a.version || 1));
+  }, [library, currentMeta.id]);
+
     if (!currentMeta.id) return 0;
     return library.filter((x) => x.parentId === currentMeta.id).length;
   }, [library, currentMeta.id]);
@@ -403,6 +415,44 @@ function App() {
               <div><b>Arc stage:</b> {arcStage}</div>
               <div><b>Version:</b> {currentMeta.version}{currentMeta.parentId ? ` (parent: ${currentMeta.parentId})` : ""}</div>
               <div><b>Children:</b> {childrenCount}</div>
+
+<hr style={{ margin: "12px 0", border: "none", borderTop: "1px solid #eee" }} />
+
+<h3 style={{ margin: "0 0 8px" }}>Version tree</h3>
+
+{parentEntry ? (
+  <div style={{ marginBottom: 8 }}>
+    <div style={{ fontSize: 12, color: "#666" }}>Parent</div>
+    <button
+      style={{ padding: "6px 10px", borderRadius: 10, border: "1px solid #ddd", cursor: "pointer" }}
+      onClick={() => loadSelected(parentEntry.id)}
+    >
+      {parentEntry.core.name} • v{parentEntry.version || 1} • {parentEntry.arcStage || "mid"}
+    </button>
+  </div>
+) : (
+  <div style={{ fontSize: 12, color: "#777", marginBottom: 8 }}>No parent (base version)</div>
+)}
+
+{childrenEntries.length ? (
+  <div>
+    <div style={{ fontSize: 12, color: "#666", marginBottom: 6 }}>Children</div>
+    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+      {childrenEntries.map((c) => (
+        <button
+          key={c.id}
+          style={{ padding: "6px 10px", borderRadius: 10, border: "1px solid #ddd", cursor: "pointer" }}
+          onClick={() => loadSelected(c.id)}
+        >
+          v{c.version || 1} • {c.arcStage || "mid"}
+        </button>
+      ))}
+    </div>
+  </div>
+) : (
+  <div style={{ fontSize: 12, color: "#777" }}>No children yet. Try Evolve.</div>
+)}
+
 
               <hr style={{ margin: "12px 0", border: "none", borderTop: "1px solid #eee" }} />
 
