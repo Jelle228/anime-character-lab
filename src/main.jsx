@@ -244,6 +244,18 @@ function App() {
 
   // Show quick version chain info for selected
   const childrenCount = useMemo(() => {
+    const parentEntry = useMemo(() => {
+    if (!currentMeta.parentId) return null;
+    return library.find((x) => x.id === currentMeta.parentId) || null;
+  }, [library, currentMeta.parentId]);
+
+  const childrenEntries = useMemo(() => {
+    if (!currentMeta.id) return [];
+    return library
+      .filter((x) => x.parentId === currentMeta.id)
+      .sort((a, b) => (b.version || 1) - (a.version || 1));
+  }, [library, currentMeta.id]);
+
   const parentEntry = useMemo(() => {
     if (!currentMeta.parentId) return null;
     return library.find((x) => x.id === currentMeta.parentId) || null;
@@ -425,7 +437,7 @@ function App() {
     <div style={{ fontSize: 12, color: "#666" }}>Parent</div>
     <button
       style={{ padding: "6px 10px", borderRadius: 10, border: "1px solid #ddd", cursor: "pointer" }}
-      onClick={() => loadSelected(parentEntry.id)}
+      onClick={() => parentEntry && loadSelected(parentEntry.id)}
     >
       {parentEntry.core.name} • v{parentEntry.version || 1} • {parentEntry.arcStage || "mid"}
     </button>
@@ -442,7 +454,7 @@ function App() {
         <button
           key={c.id}
           style={{ padding: "6px 10px", borderRadius: 10, border: "1px solid #ddd", cursor: "pointer" }}
-          onClick={() => loadSelected(c.id)}
+          onClick={() => c?.id && loadSelected(c.id)}
         >
           v{c.version || 1} • {c.arcStage || "mid"}
         </button>
