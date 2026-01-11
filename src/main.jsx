@@ -308,48 +308,8 @@ const childrenEntries = useMemo(() => {
           alignItems: "start",
         }}
       >
-{/* Preview placeholder */}
+        {/* Preview placeholder */}
 <div
-  style={{
-    width: 320,
-    height: 460,
-    border: "2px dashed #bbb",
-    borderRadius: 16,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    background: "#fafafa",
-    padding: 12,
-    textAlign: "center",
-  }}
->
-  <div style={{ fontSize: 12, color: "#666", lineHeight: 1.6 }}>
-    PREVIEW TEST ✅<br />
-    Height: {height}<br />
-    Build: {build}<br />
-    Accent: {outfit.palette?.[2]}<br />
-    Anchor: {outfit.accessory}
-  </div>
-</div>
-
->
-  <div style={{ fontSize: 12, color: "#666" }}>
-    PREVIEW TEST ✅<br />
-    Height: {height}<br />
-    Build: {build}<br />
-    Accent: {outfit.palette?.[2]}<br />
-    Anchor: {outfit.accessory}
-  </div>
-</div>
-
-        >
-          Character Preview (SVG later)
-      
-         <div style={{ fontSize: 12, marginBottom: 8 }}>
-           Anchor accessory: <b>{outfit.accessory}</b>
-        </div>
-
-        <div
   style={{
     width: 320,
     height: 460,
@@ -359,42 +319,30 @@ const childrenEntries = useMemo(() => {
     padding: 14,
     display: "grid",
     gridTemplateRows: "1fr auto",
-    gap: 10,
+    gap: 10
   }}
 >
-  {/* Silhouette area */}
   <div
     style={{
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      borderRadius: 14,
       background: "white",
       border: "1px solid #eee",
+      borderRadius: 14,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
     }}
   >
-    Character Preview (SVG later)
+    PREVIEW (clean)
+  </div>
+
+  <div style={{ fontSize: 12, color: "#666", lineHeight: 1.5 }}>
+    <div><b>Height:</b> {height}</div>
+    <div><b>Build:</b> {build}</div>
+    <div><b>Accent:</b> {outfit.palette?.[2]}</div>
+    <div><b>Anchor:</b> {outfit.accessory}</div>
   </div>
 </div>
-    <div
-      style={{
-        width:
-          build === "broad"
-            ? 150
-            : build === "curvy"
-            ? 140
-            : build === "muscular"
-            ? 145
-            : build === "slim"
-            ? 125
-            : 135,
-        height: height === "tall" ? 320 : height === "short" ? 260 : 290,
-        borderRadius: 999,
-        background: "#1b1b1b",
-        position: "relative",
-        boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
-      }}
-    >
+
       {/* neutral torso hint */}
       {showChest ? (
         <div
