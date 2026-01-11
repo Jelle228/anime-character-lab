@@ -308,9 +308,15 @@ const childrenEntries = useMemo(() => {
           alignItems: "start",
         }}
       >
- <div
+        {/* Preview */}
+<div
   style={{
-    height: "100%",
+    width: 320,
+    height: 460,
+    border: "2px dashed #bbb",
+    borderRadius: 16,
+    background: "#fafafa",
+    padding: 14,
     display: "grid",
     gridTemplateRows: "1fr auto",
     gap: 10,
@@ -328,14 +334,22 @@ const childrenEntries = useMemo(() => {
   >
     <div
       style={{
-        width: build === "slim" ? 120 : build === "broad" ? 155 : build === "muscular" ? 145 : build === "curvy" ? 140 : 135,
+        width:
+          build === "slim"
+            ? 120
+            : build === "broad"
+            ? 155
+            : build === "muscular"
+            ? 145
+            : build === "curvy"
+            ? 140
+            : 135,
         height: height === "tall" ? 320 : height === "short" ? 260 : 290,
         borderRadius: 999,
         background: "#1b1b1b",
         position: "relative",
       }}
     >
-      {/* accent belt */}
       <div
         style={{
           position: "absolute",
@@ -360,24 +374,24 @@ const childrenEntries = useMemo(() => {
   </div>
 
   <div style={{ fontSize: 12, color: "#666", lineHeight: 1.4 }}>
-    <div><b>Visual preview:</b> silhouette placeholder</div>
-    <div><b>Anchor:</b> {outfit.accessory}</div>
-    <div><b>Palette:</b> {outfit.palette.join(", ")}</div>
-    <div><b>Modifiers:</b> {outfit.modifiers?.length ? outfit.modifiers.join(", ") : "—"}</div>
+    <div>
+      <b>Visual preview:</b> silhouette placeholder
+    </div>
+    <div>
+      <b>Anchor:</b> {outfit.accessory}
+    </div>
+    <div>
+      <b>Palette:</b> {outfit.palette.join(", ")}
+    </div>
+    <div>
+      <b>Modifiers:</b>{" "}
+      {outfit.modifiers?.length ? outfit.modifiers.join(", ") : "—"}
+    </div>
   </div>
+  {/* Right column */}
+<div style={{ display: "grid", gap: 12 }}>
+  ...hier komt de rest van je rechterkant...
 </div>
-
-  </div>
-
-  <div style={{ fontSize: 12, color: "#666", lineHeight: 1.4 }}>
-    <div><b>Height:</b> {height}</div>
-    <div><b>Build:</b> {build}</div>
-    <div><b>Accent:</b> {outfit.palette?.[2]}</div>
-    <div><b>Anchor:</b> {outfit.accessory}</div>
-    <div><b>Modifiers:</b> {outfit.modifiers?.length ? outfit.modifiers.join(", ") : "—"}</div>
-  </div>
-</div>
-  <div style={{ display: "grid", gap: 12 }}>
 
   {/* Info */}
   <div style={{ fontSize: 12, color: "#666", lineHeight: 1.4 }}>
